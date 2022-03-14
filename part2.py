@@ -99,15 +99,6 @@ def avg_height_weight(df):
     in the data and then calculate the mean of height and weight of each year.
     Plot them in one figure by two axes
     '''
-    '''big5 = ((df['league_name'] == 'French Ligue 1') |
-            (df['league_name'] == 'Spain Primera Division') |
-            (df['league_name'] == 'German 1. Bundesliga') |
-            (df['league_name'] == 'Italian Serie A') |
-            (df['league_name'] == 'English Premier League'))
-    starter = df["club_position"] != "SUB"
-    data = df[big5 & starter]
-    columns = ["height_cm", "weight_kg"]
-    data = data.groupby('year', as_index=False)[columns].mean()'''
     data = p1.avg_heighht_weight_data(df)
     fig, ax = plt.subplots()
     ax2 = ax.twinx()
