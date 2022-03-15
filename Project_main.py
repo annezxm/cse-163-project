@@ -257,19 +257,6 @@ def wage_predict(df, df_22):
     return [test_MSE, mse_22]
 
 
-def wage_value(df):
-    '''
-    Run a regresiion on wage versus value and see if they are correlated.
-    Save the image to Output.
-    '''
-    sns.regplot(x='value_eur', y='wage_eur', data=df)
-    plt.xlabel('value')
-    plt.ylabel('wage')
-    plt.title('Regression plot of wage vs value')
-    plt.savefig('Output/wage_value_regression.png', bbox_inches='tight')
-    plt.show()
-
-
 def main():
     '''
     Read all the csv files and call functions to generate output.
@@ -303,7 +290,6 @@ def main():
                            data_20, data_21]
     merged_data2 = p1.merge_data(data_overyear_list2)
     wage_predict_output = wage_predict(merged_data2, data_22)
-    wage_value(merged_data)
     print("The test MSE for model build on 15 - 22 data is: ",
           wage_predict_output[0])
     print("The test MSE using the model 15-21 to predict 2022 data is: ",
