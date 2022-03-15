@@ -1,7 +1,9 @@
-"""
-Does all the plotting and machine learning, generates all the outputs for
-our project.
-"""
+'''
+Name: Yuchen Wu, Xinmeng Zhang
+Implement functions for each reaserch questions for the CSE 163 final
+project. Running this program should generate all outpul images and
+they are saved in the Output folder.
+'''
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -10,7 +12,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 import plotly.graph_objects as go
-import part1 as p1
+import Project_data_processing as p1
 sns.set()
 
 
@@ -25,22 +27,21 @@ def top_5_plot(df):
     plt.xlabel('Year')
     plt.ylabel('Rating')
     plt.title('Key Attribute of Top 5% Players')
-    plt.savefig('top_5_percent_attribute.png', bbox_inches='tight')
+    plt.savefig('Output/top_5_percent_attribute.png', bbox_inches='tight')
     plt.show()
 
 
 # Q2
 def preferred_foot_plot(dataset):
     '''
-    Takes a dataset and plots a pie chart of preferred foot of players,
-    then saves the plot
+    Takes a dataset and plots a histogram of preferred foot of players
+    and then saves the plot.
     '''
-    df = dataset.groupby('preferred_foot')["short_name"].count()
-    data = [df[0], df[1]]
-    labels = ['left', 'right']
-    plt.pie(data, labels=labels, autopct='%.0f%%')
+    sns.catplot(x='preferred_foot', kind='count', data=dataset)
     plt.title('Preferred Foot of Players')
-    plt.savefig('preferred_foot.png', bbox_inches='tight')
+    plt.xlabel('Foot')
+    plt.ylabel('Count')
+    plt.savefig('Output/preferred_foot.png', bbox_inches='tight')
     plt.show()
 
 
@@ -62,15 +63,15 @@ def nationality_cloud(df):
                            collocations=False).generate(text)
     plt.imshow(word_cloud)
     plt.axis("off")
-    plt.savefig("cloud_map.png")
+    plt.savefig("Output/cloud_map.png")
     plt.show()
 
 
 # Q3
 def nationality_histogram(df):
     '''
-    Create a histogram that shows the top 10 countires that
-    has most FIFA players in 2022.
+    Plot a histogram that shows the top 10 countires that
+    has most FIFA players and save the graph.
     '''
     sns.catplot(x="nationality_name", kind='count', color='b', data=df,
                 order=pd.value_counts(df['nationality_name']).iloc[:10].index)
@@ -78,22 +79,7 @@ def nationality_histogram(df):
     plt.xticks(rotation=-45)
     plt.xlabel('Nationality')
     plt.ylabel('Count')
-    plt.savefig('most_player_22.png', bbox_inches='tight')
-    plt.show()
-
-
-# Q4 (only height)
-def avg_height(df):
-    '''
-    Group the data by year and then calculate the mean of
-    height and weight of each year.
-    '''
-    df.groupby('year')["height_cm"].mean()
-    sns.relplot(x="year", y="height_cm", kind="line", data=df)
-    plt.title("Player's average height by year")
-    plt.xlabel("Year")
-    plt.ylabel("Height(cm)")
-    plt.savefig('avg_height.png')
+    plt.savefig('Output/most_player_22.png', bbox_inches='tight')
     plt.show()
 
 
@@ -113,7 +99,7 @@ def avg_height_weight(df):
     ax.set_ylabel('Height(cm)', color="red", fontsize=16)
     ax2.set_ylabel('Weight(kg)', color="blue", fontsize=16)
     plt.title("Player's average height and weight across year")
-    plt.savefig('avg_height_weight.png', bbox_inches='tight')
+    plt.savefig('Output/avg_height_weight.png', bbox_inches='tight')
     plt.show()
 
 
@@ -129,7 +115,7 @@ def age_plot(dataset):
     plt.xlabel('Age')
     plt.ylabel('Count')
     plt.xticks(rotation=-45)
-    plt.savefig('age_distribution.png', bbox_inches='tight')
+    plt.savefig('Output/age_distribution.png', bbox_inches='tight')
     plt.show()
 
 
@@ -146,7 +132,7 @@ def league_wage_plot(dataset):
     plt.xlabel('League')
     plt.ylabel('Wage')
     plt.xticks(rotation=-45)
-    plt.savefig('league_wage_distribution.png', bbox_inches='tight')
+    plt.savefig('Output/league_wage_distribution.png', bbox_inches='tight')
     plt.show()
 
 
@@ -176,6 +162,7 @@ def messi_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
+    fig.write_image("Output/messi.png")
     fig.show()
 
 
@@ -206,6 +193,7 @@ def ron_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
+    fig.write_image("Output/ron.png")
     fig.show()
 
 
@@ -235,6 +223,7 @@ def messi_ron_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
+    fig.write_image("Output/messi_ron_compare.png")
     fig.show()
 
 
@@ -266,6 +255,9 @@ def wage_predict(df, df_22):
 
 
 def main():
+    '''
+    Read all the csv files and call functions to generate output.
+    '''
     data_15 = pd.read_csv('Dataset/players_15.csv')
     data_16 = pd.read_csv('Dataset/players_16.csv')
     data_17 = pd.read_csv('Dataset/players_17.csv')
@@ -284,15 +276,17 @@ def main():
     nationality_histogram(data_22)
     nationality_cloud(merged_data)
     avg_height_weight(merged_data)
-    avg_height(merged_data)
     messi_plot(merged_data)
     ron_plot(merged_data)
     messi_ron_plot(merged_data)
     data_overyear_list2 = [data_15, data_16, data_17, data_18, data_19,
                            data_20, data_21]
     merged_data2 = p1.merge_data(data_overyear_list2)
-    wage_15_21 = wage_predict(merged_data2, data_22)
-    print("The test MSE for model build on 15 - 22 data is: ", wage_15_21)
+    wage_predict_output = wage_predict(merged_data2, data_22)
+    print("The test MSE for model build on 15 - 22 data is: ",
+          wage_predict_output[0])
+    print("The test MSE using the model 15-21 to predict 2022 data is: ",
+          wage_predict_output[1])
 
 
 if __name__ == '__main__':
