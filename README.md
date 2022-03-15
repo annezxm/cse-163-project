@@ -4,7 +4,7 @@
 ### - You can download our program and attachted datasets here in the github repository [CSE 163 Final Project](https://github.com/annezxm/cse-163-project)
 
 ### - Libraries Needed
-> pandas, seaborn, matplotlib, functools, numpy, wordcloud, sklearn.tree, sklearn.metrics, sklearn.model_selection, plotly.graph_objects, os, PIL
+> pandas, seaborn, matplotlib, functools, numpy, wordcloud, sklearn.tree, sklearn.metrics, sklearn.model_selection, plotly.graph_objects, os, PIL, plotly.graph_objects
 
 ### - Dataset Needed (in the folder Dataset):
 > players_15.csv, players_16.csv, players_17.csv, players_18.csv, players_19.csv, players_20.csv, players_21.csv, players_22.csv
