@@ -285,8 +285,12 @@ def main():
     data_overyear_list2 = [data_15, data_16, data_17, data_18, data_19,
                            data_20, data_21]
     merged_data2 = merge_data(data_overyear_list2)
-    wage_15_21 = wage_predict(merged_data2, data_22)
-    print("The test MSE for model build on 15 - 22 data is: ", wage_15_21)
+    wage_predicted = wage_predict(merged_data2, data_22)
+    print("The test MSE for model build on 15 - 22 data is: ",
+          wage_predicted[0])
+    print("The test MSE using the model 15-21 to predict 2022 data is: ",
+          wage_predicted[1])
+    print("All test passed")
 
 
 if __name__ == '__main__':
