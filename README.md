@@ -10,7 +10,7 @@
 > players_15.csv, players_16.csv, players_17.csv, players_18.csv, players_19.csv, players_20.csv, players_21.csv, players_22.csv
 
 ### - Reproduce Instruction
-> Run the python file ___ will generate all the graphs and outputs that we presented in the Project Report
+> Run the python file **Project_main.py** will generate all the graphs and outputs that we presented in the Project Report
 
 ### - Potential Problems Encountered:
 #### 1. You might need to install the below packages by typing the stated command in the Terminal of VS Code
