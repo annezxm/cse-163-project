@@ -19,4 +19,8 @@
  > To save figure of the plotly library, type: **pip install -U kaleido**, or, **conda install -c conda-forge python-kaleido**
 #### 2. Figure display problem
  > The messi figure may not be properly displayed in the webpage, but it is saved in the Output folder.
-
+#### 3. File Error problem
+ > If encountered with any FileNotFoundError, make sure you have the following folder in the directory:
+ > 1. Dataset
+ > 2. Output
+ > 3. small_data
