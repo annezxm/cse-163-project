@@ -14,8 +14,8 @@
 
 ### - Potential Problems Encountered:
 #### 1. You might need to install the below packages by typing the stated command in the Terminal of VS Code
- > To install wordcloud, type: pip install wordcloud
- > To install plotly, type: pip install plotly==5.6.0
+ > To install wordcloud, type: pip install wordcloud \n
+ > To install plotly, type: pip install plotly==5.6.0 \n
  > To save figure of the plotly library, type: pip install -U kaleido, or, conda install -c conda-forge python-kaleido
 #### 2. Figure display problem
  > The messi figure may not be properly displayed in the webpage, but it is saved in the Output folder.
