@@ -1,3 +1,8 @@
+'''
+Name: Yuchen Wu, Xinmeng Zhang
+This is a test file using a smaller data size to check the accuracy
+of the output generated in the Project_main program.
+'''
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
