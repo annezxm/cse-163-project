@@ -17,22 +17,23 @@ sns.set()
 
 
 # Q1
-def top_5_plot(df):
+def top_5_plot(df, name='Output/'):
     '''
     Takes a dataset, plots a line chart of the average attribute rating and
     year, and saves the plot
     '''
+    directory = name
     df.reset_index(level=0, inplace=True)
     sns.relplot(x='year', y='rating', hue='attribute', data=df, kind='line')
     plt.xlabel('Year')
     plt.ylabel('Rating')
     plt.title('Key Attribute of Top 5% Players')
-    plt.savefig('Output/top_5_percent_attribute.png', bbox_inches='tight')
+    plt.savefig(directory + 'top_5_percent_attribute.png', bbox_inches='tight')
     plt.show()
 
 
 # Q2
-def preferred_foot_plot(dataset):
+def preferred_foot_plot(dataset, name='Output/'):
     '''
     Takes a dataset and plots a histogram of preferred foot of players
     and then saves the plot.
@@ -44,12 +45,12 @@ def preferred_foot_plot(dataset):
     plt.title('Preferred Foot of Players')
     plt.xlabel('Foot')
     plt.ylabel('Count')
-    plt.savefig('Output/preferred_foot.png', bbox_inches='tight')
+    plt.savefig(name + 'preferred_foot.png', bbox_inches='tight')
     plt.show()
 
 
 # Q3
-def nationality_cloud(df):
+def nationality_cloud(df, name='Output/'):
     '''
     Create a Word map according to the number of player's nationality from
     2015-2022. Remove the blank space of some countries for manipulation in
@@ -66,12 +67,12 @@ def nationality_cloud(df):
                            collocations=False).generate(text)
     plt.imshow(word_cloud)
     plt.axis("off")
-    plt.savefig("Output/cloud_map.png")
+    plt.savefig(name + "cloud_map.png")
     plt.show()
 
 
 # Q3
-def nationality_histogram(df, name, title):
+def nationality_histogram(df, name, title, directory='Output/'):
     '''
     Plot a histogram that shows the top 10 countires that
     has most FIFA players and save the graph.
@@ -82,12 +83,12 @@ def nationality_histogram(df, name, title):
     plt.xticks(rotation=-45)
     plt.xlabel('Nationality')
     plt.ylabel('Count')
-    plt.savefig('Output/' + name, bbox_inches='tight')
+    plt.savefig(directory + name, bbox_inches='tight')
     plt.show()
 
 
 # Q4 (height and weight in same figure)
-def avg_height_weight(df):
+def avg_height_weight(df, name='Output/'):
     '''
     Group the data by year. Take only the Big 5 clubs and the starter players
     in the data and then calculate the mean of height and weight of each year.
@@ -102,12 +103,12 @@ def avg_height_weight(df):
     ax.set_ylabel('Height(cm)', color="red", fontsize=16)
     ax2.set_ylabel('Weight(kg)', color="blue", fontsize=16)
     plt.title("Player's average height and weight across year")
-    plt.savefig('Output/avg_height_weight.png', bbox_inches='tight')
+    plt.savefig(name + 'avg_height_weight.png', bbox_inches='tight')
     plt.show()
 
 
 # Q5
-def age_plot(dataset):
+def age_plot(dataset, name='Output/'):
     '''
     Takes a dataset and filters to players under 40-years-old, plot
     the distribution as a histogram and saves the plot
@@ -118,12 +119,12 @@ def age_plot(dataset):
     plt.xlabel('Age')
     plt.ylabel('Count')
     plt.xticks(rotation=-45)
-    plt.savefig('Output/age_distribution.png', bbox_inches='tight')
+    plt.savefig(name + 'age_distribution.png', bbox_inches='tight')
     plt.show()
 
 
 # Q5
-def league_wage_plot(dataset):
+def league_wage_plot(dataset, name='Output/'):
     '''
     Takes a dataset and selects only players in the Big Five League and age
     between 20 to 40 years old. Plots the distribution of wage by league
@@ -135,12 +136,12 @@ def league_wage_plot(dataset):
     plt.xlabel('League')
     plt.ylabel('Wage')
     plt.xticks(rotation=-45)
-    plt.savefig('Output/league_wage_distribution.png', bbox_inches='tight')
+    plt.savefig(name + 'league_wage_distribution.png', bbox_inches='tight')
     plt.show()
 
 
 # Q6
-def messi_plot(df):
+def messi_plot(df, name='Output/'):
     '''
     Takes a dataset and draws a polar graph of six attribute ratings of
     Messi in 2015 and 2022
@@ -165,11 +166,11 @@ def messi_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
-    fig.write_image("Output/messi.png")
+    fig.write_image(name + "messi.png")
     fig.show()
 
 
-def ron_plot(df):
+def ron_plot(df, name='Output/'):
     '''
     Takes a dataset and draws a polar graph of six attribute ratings of
     Ronaldo in 2015 and 2022
@@ -196,11 +197,11 @@ def ron_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
-    fig.write_image("Output/ron.png")
+    fig.write_image(name + "ron.png")
     fig.show()
 
 
-def messi_ron_plot(df):
+def messi_ron_plot(df, name='Output/'):
     '''
     Takes a dataset and draws a polar graph of six attribute ratings of
     Messi and Ronaldo in 2022
@@ -226,7 +227,7 @@ def messi_ron_plot(df):
         radialaxis=dict(
           visible=True,)),
       showlegend=True)
-    fig.write_image("Output/messi_ron_compare.png")
+    fig.write_image(name + "messi_ron_compare.png")
     fig.show()
 
 

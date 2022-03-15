@@ -36,13 +36,15 @@ def main():
     data_overyear_list = [data_15, data_16, data_17, data_18, data_19,
                           data_20, data_21, data_22]
     merged_data = pj2.merge_data(data_overyear_list)
-    pj1.top_5_plot(pj2.top_5(data_overyear_list), 'small_data')
-    pj1.preferred_foot_plot(data_22, 'small_data')
-    pj1.age_plot(data_22, 'small_data')
-    pj1.league_wage_plot(data_22, 'small_data')
-    pj1.nationality_histogram(data_22, 'small_data')
-    pj1.nationality_cloud(merged_data, 'small_data')
-    pj1.avg_height_weight(merged_data, 'small_data')
+    pj1.top_5_plot(pj2.top_5(data_overyear_list), 'small_data/')
+    pj1.preferred_foot_plot(data_22, 'small_data/')
+    pj1.age_plot(data_22, 'small_data/')
+    pj1.league_wage_plot(data_22, 'small_data/')
+    pj1.nationality_histogram(data_22, 'most_player_22.png',
+                              'Top 10 countries with most players',
+                              'small_data/')
+    pj1.nationality_cloud(merged_data, 'small_data/')
+    pj1.avg_height_weight(merged_data, 'small_data/')
     data_overyear_list2 = [data_15, data_16, data_17, data_18, data_19,
                            data_20, data_21]
     merged_data2 = pj2.merge_data(data_overyear_list2)
@@ -51,7 +53,6 @@ def main():
           wage_predicted[0])
     print("The test MSE using the model 15-21 to predict 2022 data is: ",
           wage_predicted[1])
-    print("All test passed")
 
 
 if __name__ == '__main__':
